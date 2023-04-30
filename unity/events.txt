@@ -1,0 +1,9 @@
+## OnTriggerEnter/OnTriggerExit
+выполняются, когда текущий объект
+начинает или заканчивает соприкасаться с другим (other) объектом
+
+private void OnTriggerExit(Collider other){
+  Destroy(other.gameObject);
+}
+
+----
