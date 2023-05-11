@@ -9,6 +9,8 @@ public class pulo7 : MonoBehaviour {
         в MeshCollider ставим isTrigger
         добавляем AudioSource компонент и убираем Play On Awake
         втыкаем звук в сериализованное поле
+        Для игрока задаем tag=Player и проверяем по тегу, что именно
+        игрок столкнулся с подарочком, а не, например, пуля
     */
     AudioSource audioSource;
     Collider objCollider;
@@ -30,6 +32,9 @@ public class pulo7 : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         // При пересечении объекта играем звук
+        if (other.tag != "Player") {
+            return;
+        }
         if (audioSource && pulo7Sound) {
             audioSource.PlayOneShot(pulo7Sound);
         }

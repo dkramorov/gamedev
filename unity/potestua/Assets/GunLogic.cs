@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GunLogic : MonoBehaviour {
     /* Логика пистолета 
@@ -25,6 +26,9 @@ public class GunLogic : MonoBehaviour {
     [SerializeField]
     int ammoCount = 10; // Боезапас
 
+    [SerializeField]
+    Text uiAmmoText;
+
     bool fireEnabled = false;
 
     void Start() {
@@ -33,10 +37,17 @@ public class GunLogic : MonoBehaviour {
         } else {
             Debug.LogError("fireGub not initialized");
         }
+        setUIAmmoText();
     }
 
     void Update() {
         fire();
+    }
+
+    void setUIAmmoText() {
+        if (uiAmmoText) {
+            uiAmmoText.text = "Боезапас: " + ammoCount;
+        }
     }
 
     void fire() {
@@ -55,6 +66,7 @@ public class GunLogic : MonoBehaviour {
 
                 fireSpeedCountdown = defaultSpeedCountdown;
                 ammoCount -= 1;
+                setUIAmmoText();
             }
         }
     }
